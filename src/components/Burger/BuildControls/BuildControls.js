@@ -1,10 +1,11 @@
 import React from 'react';
-import { BUILD_CONTROLS } from '../../../utils/constants';
+import { BUILD_CONTROLS,BASE_PRICE } from '../../../utils/constants';
 import BuildControl from './BuildControl/BuildControl';
 
 import './BuildControls.css';
 
 const BuildControls = props => {
+  const isDisabled = props.runningCost <= BASE_PRICE;
   return (
     <div className="BuildControls">
         <p className="Price">
@@ -14,9 +15,12 @@ const BuildControls = props => {
         {BUILD_CONTROLS.map((ctrl,i) =>
             <BuildControl
                 key={i}
+                controlDisabled={isDisabled}
                 label={ctrl.label}
                 add={() => props.addIngredientHandler(ctrl.type)}
                 remove={() => props.removeIngredientHandler(ctrl.type)}/>)}
+      <button className="OrderButton" 
+              disabled={isDisabled} onClick={props.order}>ORDER NOW</button>
     </div>
   )
 }

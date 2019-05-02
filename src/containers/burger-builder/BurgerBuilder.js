@@ -2,6 +2,8 @@ import React, { useState  } from 'react';
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import { PRICES, BASE_PRICE } from '../../utils/constants';
+import Modal from '../../components/UI/Modal/Modal';
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 
 const BurgerBuilder = () => {
 
@@ -13,7 +15,16 @@ const BurgerBuilder = () => {
       meat: 0
     },
     totalPrice: 4,
+    showOrderSummary: false
   });
+
+  const showOrderSummaryHandler = () => {
+    console.log('here');
+    setBurgerBuilderState({
+      ...burgerBuilderState,
+      showOrderSummary:true
+    });
+  }
 
   const checkBasePriceOnOperation = (count ,amt) =>
       count > 0 && burgerBuilderState.totalPrice - amt >= BASE_PRICE;
@@ -22,7 +33,11 @@ const BurgerBuilder = () => {
     let {ingredients, totalPrice} = burgerBuilderState;
     ingredients[type] ++;
     totalPrice += PRICES[type];
-    setBurgerBuilderState({ ingredients, totalPrice});
+    setBurgerBuilderState({ 
+      ...burgerBuilderState, 
+      ingredients, 
+      totalPrice
+    });
   }
 
   const removeIngredient = type => {
@@ -30,14 +45,22 @@ const BurgerBuilder = () => {
     if (checkBasePriceOnOperation(ingredients[type], PRICES[type])) {
       ingredients[type] --;
       totalPrice -= PRICES[type];
-      setBurgerBuilderState({ ingredients, totalPrice});
+      setBurgerBuilderState({ 
+        ...burgerBuilderState, 
+        ingredients, 
+        totalPrice
+      });
     }
   }
 
   return (
     <>
+        <Modal show={burgerBuilderState.showOrderSummary }>
+          <OrderSummary {...burgerBuilderState} />
+        </Modal>
         <Burger ingredients ={ burgerBuilderState.ingredients} />
         <BuildControls
+          order={showOrderSummaryHandler}
           runningCost={burgerBuilderState.totalPrice}
           addIngredientHandler={addIngredient}
           removeIngredientHandler={removeIngredient}/>
