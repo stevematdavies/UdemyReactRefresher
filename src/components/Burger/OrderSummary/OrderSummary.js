@@ -17,10 +17,13 @@ const OrderSummary = props => {
             </ul>
             <div className="ButtonControls">
                 <button className="OrderSummaryButton cl"
-                        onClick={props.click}>
+                        onClick={props.cancelClicked}>
                     Cancel
                 </button>
-                <button className="OrderSummaryButton ck">Checkout</button>
+                <button className="OrderSummaryButton ck"
+                        onClick={props.continueClicked}>
+                    Checkout
+                </button>
             </div>
 
         </>

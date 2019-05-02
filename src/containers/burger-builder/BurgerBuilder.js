@@ -54,16 +54,22 @@ const BurgerBuilder = () => {
   }
 
   const closeModalHandler = () => 
-  setBurgerBuilderState({ 
-    ...burgerBuilderState, 
-    showOrderSummary:false
-  });
+    setBurgerBuilderState({ 
+      ...burgerBuilderState, 
+      showOrderSummary:false
+    });
+  
+  const coninuePurchaseClickHandler =() => {
+    alert('TODO! implement continue purchase')
+  }
 
   return (
     <>
         <Modal show={burgerBuilderState.showOrderSummary } 
                closeModalHandler={closeModalHandler}>
-                  <OrderSummary {...burgerBuilderState} click={closeModalHandler}/>
+                  <OrderSummary {...burgerBuilderState} 
+                    cancelClicked={closeModalHandler}
+                    continueClicked={coninuePurchaseClickHandler}/>
         </Modal>
         <Burger ingredients ={ burgerBuilderState.ingredients} />
         <BuildControls
