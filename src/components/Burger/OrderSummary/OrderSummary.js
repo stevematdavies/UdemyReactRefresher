@@ -15,7 +15,14 @@ const OrderSummary = props => {
                         : {ingredients[key]}
                     </li>)}
             </ul>
-            <p>Continue to checkout?</p>
+            <div className="ButtonControls">
+                <button className="OrderSummaryButton cl"
+                        onClick={props.click}>
+                    Cancel
+                </button>
+                <button className="OrderSummaryButton ck">Checkout</button>
+            </div>
+
         </>
     )
 }

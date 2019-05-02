@@ -1,3 +1,29 @@
 .OrderSummary {
     
 }
+
+.ButtonControls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start
+}
+
+.OrderSummaryButton {
+    margin: 6px;
+    outline: none;
+    color: white;
+    height: 40px;
+    width: 120px;
+    font: inherit;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.ck {
+    background-color: green;
+}
+
+.cl {
+    background-color: red;
+}

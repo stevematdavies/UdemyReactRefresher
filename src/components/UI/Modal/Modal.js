@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './Modal.css';
+import Backdrop from '../Backdrop/Backdrop';
 
 const getStyle = show => show
     ? ({
@@ -14,9 +15,12 @@ const getStyle = show => show
 
 const Modal = props => {
   return (
-    <div className="Modal" style={getStyle(props.show)}>
-      {props.children}
-    </div>
+    <>
+      <Backdrop show={props.show} onClickHandler={props.closeModalHandler} />
+      <div className="Modal" style={getStyle(props.show)}>
+        {props.children}
+      </div>
+    </>
   )
 }
 

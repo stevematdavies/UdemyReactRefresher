@@ -53,10 +53,17 @@ const BurgerBuilder = () => {
     }
   }
 
+  const closeModalHandler = () => 
+  setBurgerBuilderState({ 
+    ...burgerBuilderState, 
+    showOrderSummary:false
+  });
+
   return (
     <>
-        <Modal show={burgerBuilderState.showOrderSummary }>
-          <OrderSummary {...burgerBuilderState} />
+        <Modal show={burgerBuilderState.showOrderSummary } 
+               closeModalHandler={closeModalHandler}>
+                  <OrderSummary {...burgerBuilderState} click={closeModalHandler}/>
         </Modal>
         <Burger ingredients ={ burgerBuilderState.ingredients} />
         <BuildControls
