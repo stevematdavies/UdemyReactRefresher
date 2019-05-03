@@ -11,7 +11,7 @@ const OrderSummary = props => {
             <ul>
                 {Object.keys(ingredients).map((key, i) =>
                     <li key={key + i}>
-                        <span style={{textTransform: "capitalize"}}>{key}</span> 
+                        <span style={{textTransform: "capitalize"}}>{key}</span>
                         : {ingredients[key]}
                     </li>)}
             </ul>
@@ -22,7 +22,7 @@ const OrderSummary = props => {
                 </button>
                 <button className="OrderSummaryButton ck"
                         onClick={props.continueClicked}>
-                    Checkout
+                    Continue
                 </button>
             </div>
 
